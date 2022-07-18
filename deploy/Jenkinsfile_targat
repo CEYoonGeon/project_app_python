@@ -9,8 +9,8 @@ pipeline {
 
     // CI
     string(name : 'AWS_ACCOUNT_ID', defaultValue : '257307634175', description : 'AWS_ACCOUNT_ID')
-    string(name : 'DOCKER_IMAGE_NAME', defaultValue : 'demo', description : 'DOCKER_IMAGE_NAME')
-    string(name : 'DOCKER_TAG', defaultValue : '1.0.0', description : 'DOCKER_TAG')
+    string(name : 'DOCKER_IMAGE_NAME', defaultValue : 'std03', description : 'DOCKER_IMAGE_NAME')
+    string(name : 'DOCKER_TAG', defaultValue : 'std03', description : 'DOCKER_TAG')
 
     // CD
     string(name : 'TARGET_SVR_USER', defaultValue : 'ec2-user', description : 'TARGET_SVR_USER')
@@ -71,7 +71,7 @@ pipeline {
     stage('============ Deploy workload ============') {
         when { expression { return params.DEPLOY_WORKLOAD } }
         steps {
-            sshagent (credentials: ['aws_ec2_user_ssh']) {
+            sshagent (credentials: ['0673c04c-8dc9-4f06-96c2-1540acd3dbea']) {
                 sh """#!/bin/bash
                     scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
                         deploy/docker-compose.yml \
