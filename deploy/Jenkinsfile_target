@@ -42,7 +42,7 @@ pipeline {
     stage('============ Run test code ============') {
         when { expression { return params.RUN_TEST } }
         steps {
-            echo " Run test code!!"
+            echo " Run test code!"
         }
     }
     stage('============ Push Docker Image ============') {
@@ -71,7 +71,7 @@ pipeline {
     stage('============ Deploy workload ============') {
         when { expression { return params.DEPLOY_WORKLOAD } }
         steps {
-            sshagent (credentials: ['ec2-user']) {
+            sshagent (credentials: ['aws_ec2_user_ssh']) {
                 sh """#!/bin/bash
                     scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
                         deploy/docker-compose.yml \
